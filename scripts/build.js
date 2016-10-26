@@ -20,6 +20,6 @@ exec('npm run build-min', webpackEnv)
 
 console.log(
   '\ngzipped, the UMD build is ' + prettyBytes(
-    gzipSize.sync(readFileSync('umd/serial-equal.min.js'))
+    gzipSize.sync(readFileSync('umd/value-equal.min.js'))
   )
 )
