@@ -1,7 +1,7 @@
 {
   "name": "value-equal",
   "version": "0.0.1",
-  "description": "Are these two JavaScript *values* equal?",
+  "description": "Are these two JavaScript values equal?",
   "repository": "mjackson/value-equal",
   "author": "Michael Jackson",
   "license": "MIT",
