@@ -42,7 +42,7 @@ valueEqual(1, 1)                           // true
 valueEqual('asdf', 'asdf')                 // true
 valueEqual('asdf', new String('asdf'))     // true
 valueEqual(true, true)                     // true
-valueEqual(true, false)                    // true
+valueEqual(true, false)                    // false
 valueEqual({ a: 'a' }, { a: 'a' })         // true
 valueEqual({ a: 'a' }, { a: 'b' })         // false
 ```
