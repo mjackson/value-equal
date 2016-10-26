@@ -1,0 +1,15 @@
+{
+  "name": "serial-equal",
+  "version": "0.0.1",
+  "description": "Are these two values equal when serialized to JSON?",
+  "repository": "mjackson/serial-equal",
+  "author": "Michael Jackson",
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.16.0",
+    "babel-preset-es2015-loose": "^8.0.0"
+  }
+}
