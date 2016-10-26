@@ -3,7 +3,7 @@ const serialEqual = (a, b) => {
     return true
 
   if (a == null || b == null)
-    return a == b
+    return false
 
   if (Array.isArray(a)) {
     if (!Array.isArray(b) || a.length !== b.length)
@@ -19,6 +19,12 @@ const serialEqual = (a, b) => {
     return false
 
   if (aType === 'object') {
+    const aValue = a.valueOf()
+    const bValue = b.valueOf()
+
+    if (aValue !== a || bValue !== b)
+      return serialEqual(aValue, bValue)
+
     const aKeys = Object.keys(a)
     const bKeys = Object.keys(b)
 
