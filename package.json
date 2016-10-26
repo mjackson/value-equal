@@ -11,7 +11,8 @@
     "build-min": "webpack -p modules/index.js umd/value-equal.min.js",
     "build": "node ./scripts/build.js",
     "prepublish": "node ./scripts/build.js",
-    "test": "mocha --compilers js:babel-core/register modules/**/*-test.js"
+    "test": "mocha --compilers js:babel-core/register modules/**/*-test.js",
+    "release": "node ./scripts/release.js"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
