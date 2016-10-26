@@ -1,14 +1,14 @@
 {
-  "name": "serial-equal",
+  "name": "value-equal",
   "version": "0.0.1",
-  "description": "Are these two values equal when serialized to JSON?",
-  "repository": "mjackson/serial-equal",
+  "description": "Are these two JavaScript *values* equal?",
+  "repository": "mjackson/value-equal",
   "author": "Michael Jackson",
   "license": "MIT",
   "scripts": {
     "build-lib": "babel ./modules -d . --ignore '__tests__'",
-    "build-umd": "webpack modules/index.js umd/serial-equal.js",
-    "build-min": "webpack -p modules/index.js umd/serial-equal.min.js",
+    "build-umd": "webpack modules/index.js umd/value-equal.js",
+    "build-min": "webpack -p modules/index.js umd/value-equal.min.js",
     "build": "node ./scripts/build.js",
     "prepublish": "node ./scripts/build.js",
     "test": "mocha --compilers js:babel-core/register modules/**/*-test.js"
@@ -24,6 +24,7 @@
     "in-publish": "^2.0.0",
     "mocha": "^3.1.2",
     "pretty-bytes": "^4.0.2",
+    "readline-sync": "^1.4.4",
     "webpack": "^1.13.3"
   }
 }

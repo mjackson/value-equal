@@ -1,4 +1,4 @@
-const serialEqual = (a, b) => {
+const valueEqual = (a, b) => {
   if (a === b)
     return true
 
@@ -9,7 +9,7 @@ const serialEqual = (a, b) => {
     if (!Array.isArray(b) || a.length !== b.length)
       return false
 
-    return a.every((item, index) => serialEqual(item, b[index]))
+    return a.every((item, index) => valueEqual(item, b[index]))
   }
 
   const aType = typeof a
@@ -23,7 +23,7 @@ const serialEqual = (a, b) => {
     const bValue = b.valueOf()
 
     if (aValue !== a || bValue !== b)
-      return serialEqual(aValue, bValue)
+      return valueEqual(aValue, bValue)
 
     const aKeys = Object.keys(a)
     const bKeys = Object.keys(b)
@@ -31,10 +31,10 @@ const serialEqual = (a, b) => {
     if (aKeys.length !== bKeys.length)
       return false
 
-    return aKeys.every(key => serialEqual(a[key], b[key]))
+    return aKeys.every(key => valueEqual(a[key], b[key]))
   }
 
   return false
 }
 
-export default serialEqual
+export default valueEqual
