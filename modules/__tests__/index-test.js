@@ -13,6 +13,13 @@ describe('undefined and null', () => {
       expect(serialEqual(undefined, null)).toBe(false)
     })
   })
+
+  describe('when one is null and the other is an object', () => {
+    it('returns false', () => {
+      expect(serialEqual({}, null)).toBe(false)
+      expect(serialEqual(null, {})).toBe(false)
+    })
+  })
 })
 
 describe('string primitives', () => {
