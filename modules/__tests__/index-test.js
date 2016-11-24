@@ -1,16 +1,16 @@
 import expect from 'expect'
-import serialEqual from '../index'
+import valueEqual from '../index'
 
 describe('undefined and null', () => {
   describe('when both are undefined', () => {
     it('returns true', () => {
-      expect(serialEqual(undefined, undefined)).toBe(true)
+      expect(valueEqual(undefined, undefined)).toBe(true)
     })
   })
 
   describe('when one is null', () => {
     it('returns false', () => {
-      expect(serialEqual(undefined, null)).toBe(false)
+      expect(valueEqual(undefined, null)).toBe(false)
     })
   })
 
@@ -25,13 +25,13 @@ describe('undefined and null', () => {
 describe('string primitives', () => {
   describe('that are equal', () => {
     it('returns true', () => {
-      expect(serialEqual('asdf', 'asdf')).toBe(true)
+      expect(valueEqual('asdf', 'asdf')).toBe(true)
     })
   })
 
   describe('that are not equal', () => {
     it('returns false', () => {
-      expect(serialEqual('asdf', 'sdfg')).toBe(false)
+      expect(valueEqual('asdf', 'sdfg')).toBe(false)
     })
   })
 })
@@ -39,13 +39,13 @@ describe('string primitives', () => {
 describe('string objects', () => {
   describe('that are equal', () => {
     it('returns true', () => {
-      expect(serialEqual(new String('asdf'), new String('asdf'))).toBe(true)
+      expect(valueEqual(new String('asdf'), new String('asdf'))).toBe(true)
     })
   })
 
   describe('that are not equal', () => {
     it('returns false', () => {
-      expect(serialEqual(new String('asdf'), new String('sdfg'))).toBe(false)
+      expect(valueEqual(new String('asdf'), new String('sdfg'))).toBe(false)
     })
   })
 })
@@ -53,13 +53,13 @@ describe('string objects', () => {
 describe('number primitives', () => {
   describe('that are equal', () => {
     it('returns true', () => {
-      expect(serialEqual(123.456, 123.456)).toBe(true)
+      expect(valueEqual(123.456, 123.456)).toBe(true)
     })
   })
 
   describe('that are not equal', () => {
     it('returns false', () => {
-      expect(serialEqual(123.456, 123.567)).toBe(false)
+      expect(valueEqual(123.456, 123.567)).toBe(false)
     })
   })
 })
@@ -67,13 +67,13 @@ describe('number primitives', () => {
 describe('number objects', () => {
   describe('that are equal', () => {
     it('returns true', () => {
-      expect(serialEqual(new Number(123.456), new Number(123.456))).toBe(true)
+      expect(valueEqual(new Number(123.456), new Number(123.456))).toBe(true)
     })
   })
 
   describe('that are not equal', () => {
     it('returns false', () => {
-      expect(serialEqual(new Number(123.456), new Number(123.567))).toBe(false)
+      expect(valueEqual(new Number(123.456), new Number(123.567))).toBe(false)
     })
   })
 })
@@ -81,13 +81,13 @@ describe('number objects', () => {
 describe('boolean primitives', () => {
   describe('that are equal', () => {
     it('returns true', () => {
-      expect(serialEqual(true, true)).toBe(true)
+      expect(valueEqual(true, true)).toBe(true)
     })
   })
 
   describe('that are not equal', () => {
     it('returns false', () => {
-      expect(serialEqual(true, false)).toBe(false)
+      expect(valueEqual(true, false)).toBe(false)
     })
   })
 })
@@ -95,13 +95,13 @@ describe('boolean primitives', () => {
 describe('boolean objects', () => {
   describe('that are equal', () => {
     it('returns true', () => {
-      expect(serialEqual(new Boolean(true), new Boolean(true))).toBe(true)
+      expect(valueEqual(new Boolean(true), new Boolean(true))).toBe(true)
     })
   })
 
   describe('that are not equal', () => {
     it('returns false', () => {
-      expect(serialEqual(new Boolean(true), new Boolean(false))).toBe(false)
+      expect(valueEqual(new Boolean(true), new Boolean(false))).toBe(false)
     })
   })
 })
@@ -111,13 +111,13 @@ describe('date objects', () => {
 
   describe('that are equal', () => {
     it('returns true', () => {
-      expect(serialEqual(new Date(now), new Date(now))).toBe(true)
+      expect(valueEqual(new Date(now), new Date(now))).toBe(true)
     })
   })
 
   describe('that are not equal', () => {
     it('returns false', () => {
-      expect(serialEqual(new Date(now), new Date(now + 1))).toBe(false)
+      expect(valueEqual(new Date(now), new Date(now + 1))).toBe(false)
     })
   })
 })
@@ -125,13 +125,13 @@ describe('date objects', () => {
 describe('arrays', () => {
   describe('that are equal', () => {
     it('returns true', () => {
-      expect(serialEqual([ 1, 2, 3 ], [ 1, 2, 3 ])).toBe(true)
+      expect(valueEqual([ 1, 2, 3 ], [ 1, 2, 3 ])).toBe(true)
     })
   })
 
   describe('that are not equal', () => {
     it('returns false', () => {
-      expect(serialEqual([ 1, 2, 3 ], [ 2, 3, 4 ])).toBe(false)
+      expect(valueEqual([ 1, 2, 3 ], [ 2, 3, 4 ])).toBe(false)
     })
   })
 })
@@ -150,6 +150,6 @@ describe('objects with different constructors but the same properties', () => {
   }
 
   it('returns true', () => {
-    expect(serialEqual(new A(1, 2, 3), new B(1, 2, 3))).toBe(true)
+    expect(valueEqual(new A(1, 2, 3), new B(1, 2, 3))).toBe(true)
   })
 })
