@@ -1,6 +1,6 @@
 {
   "name": "value-equal",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Are these two JavaScript values equal?",
   "repository": "mjackson/value-equal",
   "license": "MIT",
