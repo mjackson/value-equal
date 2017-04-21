@@ -5,12 +5,8 @@ const valueEqual = (a, b) => {
   if (a == null || b == null)
     return false
 
-  if (Array.isArray(a)) {
-    if (!Array.isArray(b) || a.length !== b.length)
-      return false
-
-    return a.every((item, index) => valueEqual(item, b[index]))
-  }
+  if (Array.isArray(a))
+    return Array.isArray(b) && a.length === b.length && a.every((item, index) => valueEqual(item, b[index]))
 
   const aType = typeof a
   const bType = typeof b
