@@ -1,4 +1,7 @@
-# value-equal [![npm package][npm-badge]][npm]
+# value-equal [![Travis][build-badge]][build] [![npm package][npm-badge]][npm]
+
+[build-badge]: https://img.shields.io/travis/mjackson/value-equal/master.svg?style=flat-square
+[build]: https://travis-ci.org/mjackson/value-equal
 
 [npm-badge]: https://img.shields.io/npm/v/value-equal.svg?style=flat-square
 [npm]: https://www.npmjs.org/package/value-equal
