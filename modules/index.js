@@ -1,12 +1,15 @@
-const valueEqual = (a, b) => {
+function valueEqual(a, b) {
   if (a === b)
     return true
 
   if (a == null || b == null)
     return false
 
-  if (Array.isArray(a))
-    return Array.isArray(b) && a.length === b.length && a.every((item, index) => valueEqual(item, b[index]))
+  if (Array.isArray(a)) {
+    return Array.isArray(b) && a.length === b.length && a.every(function (item, index) {
+      return valueEqual(item, b[index])
+    })
+  }
 
   const aType = typeof a
   const bType = typeof b
@@ -27,7 +30,9 @@ const valueEqual = (a, b) => {
     if (aKeys.length !== bKeys.length)
       return false
 
-    return aKeys.every(key => valueEqual(a[key], b[key]))
+    return aKeys.every(function (key) {
+      return valueEqual(a[key], b[key])
+    })
   }
 
   return false
