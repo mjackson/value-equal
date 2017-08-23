@@ -275,6 +275,10 @@ babel-messages@^6.23.0:
   dependencies:
     babel-runtime "^6.22.0"
 
+babel-plugin-add-module-exports@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/babel-plugin-add-module-exports/-/babel-plugin-add-module-exports-0.2.1.tgz#9ae9a1f4a8dc67f0cdec4f4aeda1e43a5ff65e25"
+
 babel-plugin-check-es2015-constants@^6.22.0:
   version "6.22.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-check-es2015-constants/-/babel-plugin-check-es2015-constants-6.22.0.tgz#35157b101426fd2ffd3da3f75c7d1e91835bbf8a"
@@ -469,12 +473,6 @@ babel-polyfill@^6.23.0:
     babel-runtime "^6.22.0"
     core-js "^2.4.0"
     regenerator-runtime "^0.10.0"
-
-babel-preset-es2015-loose@^8.0.0:
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/babel-preset-es2015-loose/-/babel-preset-es2015-loose-8.0.0.tgz#82ee293ab31329c7a94686b644b62adfbcdc3f57"
-  dependencies:
-    modify-babel-preset "^3.1.0"
 
 babel-preset-es2015@^6.16.0:
   version "6.24.1"
@@ -1528,12 +1526,6 @@ mocha@^3.1.2:
     mkdirp "0.5.1"
     supports-color "3.1.2"
 
-modify-babel-preset@^3.1.0:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/modify-babel-preset/-/modify-babel-preset-3.2.1.tgz#d7172aa3c0822ed3fc08e308fd0971295136ab50"
-  dependencies:
-    require-relative "^0.8.7"
-
 ms@0.7.1:
   version "0.7.1"
   resolved "https://registry.yarnpkg.com/ms/-/ms-0.7.1.tgz#9cd13c03adbff25b65effde7ce864ee952017098"
@@ -1903,10 +1895,6 @@ request@^2.81.0:
     tough-cookie "~2.3.0"
     tunnel-agent "^0.6.0"
     uuid "^3.0.0"
-
-require-relative@^0.8.7:
-  version "0.8.7"
-  resolved "https://registry.yarnpkg.com/require-relative/-/require-relative-0.8.7.tgz#7999539fc9e047a37928fa196f8e1563dabd36de"
 
 right-align@^0.1.1:
   version "0.1.3"

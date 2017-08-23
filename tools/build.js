@@ -13,27 +13,27 @@ const exec = (command, extraEnv) =>
     env: Object.assign({}, process.env, extraEnv)
   })
 
-console.log('Building CommonJS modules ...')
-
-exec('babel modules -d . --ignore __tests__', {
-  BABEL_ENV: 'cjs'
-})
-
 console.log('\nBuilding ES modules ...')
 
-exec('babel modules -d es --ignore __tests__', {
+exec('babel modules -d . --ignore __tests__', {
   BABEL_ENV: 'es'
 })
 
-console.log('\nBuilding resolve-pathname.js ...')
+console.log('Building CommonJS modules ...')
 
-exec('webpack modules/index.js umd/resolve-pathname.js', {
+exec('babel modules -d cjs --ignore __tests__', {
+  BABEL_ENV: 'cjs'
+})
+
+console.log('\nBuilding value-equal.js ...')
+
+exec('webpack modules/index.js umd/value-equal.js', {
   NODE_ENV: 'production'
 })
 
-console.log('\nBuilding resolve-pathname.min.js ...')
+console.log('\nBuilding value-equal.min.js ...')
 
-exec('webpack -p modules/index.js umd/resolve-pathname.min.js', {
+exec('webpack -p modules/index.js umd/value-equal.min.js', {
   NODE_ENV: 'production'
 })
 
