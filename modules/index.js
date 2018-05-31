@@ -18,8 +18,8 @@ function valueEqual(a, b) {
     return false
 
   if (aType === 'object') {
-    const aValue = a.valueOf()
-    const bValue = b.valueOf()
+    const aValue = a.valueOf ? a.valueOf() : Object.prototype.valueOf.call(a)
+    const bValue = b.valueOf ? b.valueOf() : Object.prototype.valueOf.call(b)
 
     if (aValue !== a || bValue !== b)
       return valueEqual(aValue, bValue)
