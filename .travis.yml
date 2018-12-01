@@ -1,7 +1,13 @@
 language: node_js
 node_js:
-- stable
-branches:
-  only:
-  - master
-  - /^greenkeeper-/
+  - stable
+env:
+  - TEST_ENV=cjs
+  - TEST_ENV=umd
+  - TEST_ENV=source
+install:
+  - npm ci
+before_script:
+  - npm run build
+script:
+  - npm test
