@@ -7,6 +7,7 @@
   "author": "Michael Jackson",
   "files": [
     "cjs",
+    "esm",
     "index.js",
     "umd"
   ],
