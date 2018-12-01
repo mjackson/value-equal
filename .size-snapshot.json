@@ -1,0 +1,26 @@
+{
+  "esm/value-equal.js": {
+    "bundled": 807,
+    "minified": 468,
+    "gzipped": 247,
+    "treeshaked": {
+      "rollup": {
+        "code": 0,
+        "import_statements": 0
+      },
+      "webpack": {
+        "code": 951
+      }
+    }
+  },
+  "umd/value-equal.js": {
+    "bundled": 1126,
+    "minified": 598,
+    "gzipped": 311
+  },
+  "umd/value-equal.min.js": {
+    "bundled": 1126,
+    "minified": 598,
+    "gzipped": 311
+  }
+}
