@@ -28,13 +28,10 @@ function valueEqual(a, b) {
 
     if (aValue !== a || bValue !== b) return valueEqual(aValue, bValue);
 
-    var aKeys = Object.keys(a);
-    var bKeys = Object.keys(b);
+    var combo = Object.assign({}, a, b);
 
-    if (aKeys.length !== bKeys.length) return false;
-
-    return aKeys.every(function(key) {
-      return valueEqual(a[key], b[key]);
+    return Object.keys(combo).every(function(key) {
+      return valueEqual(combo[key], a[key]) && valueEqual(combo[key], b[key]);
     });
   }
 

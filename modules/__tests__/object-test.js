@@ -6,6 +6,12 @@ describe('empty objects', () => {
   });
 });
 
+describe('objects with undefined values', () => {
+  it('returns false', () => {
+    expect(valueEqual({ a: undefined }, { b: 1 })).toBe(false); // #5
+  });
+});
+
 describe('objects with different constructors but the same properties', () => {
   function A(a, b, c) {
     this.a = a;
