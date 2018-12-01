@@ -1,6 +1,7 @@
 language: node_js
 node_js:
   - stable
+cache: npm
 env:
   - TEST_ENV=cjs
   - TEST_ENV=umd
