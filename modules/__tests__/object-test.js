@@ -1,5 +1,11 @@
 import valueEqual from 'value-equal';
 
+describe('empty objects', () => {
+  it('returns true', () => {
+    expect(valueEqual({}, Object.create(null))).toBe(true);
+  });
+});
+
 describe('objects with different constructors but the same properties', () => {
   function A(a, b, c) {
     this.a = a;

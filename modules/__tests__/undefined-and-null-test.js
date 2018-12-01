@@ -7,6 +7,12 @@ describe('undefined and null', () => {
     });
   });
 
+  describe('when both are null', () => {
+    it('returns true', () => {
+      expect(valueEqual(null, null)).toBe(true);
+    });
+  });
+
   describe('when one is null', () => {
     it('returns false', () => {
       expect(valueEqual(undefined, null)).toBe(false);

@@ -1,6 +1,12 @@
+function valueOf(obj) {
+  return obj.valueOf ? obj.valueOf() : Object.prototype.valueOf.call(obj);
+}
+
 function valueEqual(a, b) {
+  // Test for strict equality first.
   if (a === b) return true;
 
+  // Otherwise, if either of them is null we already know they are not equal.
   if (a == null || b == null) return false;
 
   if (Array.isArray(a)) {
@@ -17,8 +23,8 @@ function valueEqual(a, b) {
   var bType = typeof b;
 
   if (aType === 'object' || bType === 'object') {
-    var aValue = a.valueOf();
-    var bValue = b.valueOf();
+    var aValue = valueOf(a);
+    var bValue = valueOf(b);
 
     if (aValue !== a || bValue !== b) return valueEqual(aValue, bValue);
 
