@@ -16,9 +16,7 @@ function valueEqual(a, b) {
   var aType = typeof a;
   var bType = typeof b;
 
-  if (aType !== bType) return false;
-
-  if (aType === 'object') {
+  if (aType === 'object' || bType === 'object') {
     var aValue = a.valueOf();
     var bValue = b.valueOf();
 
@@ -33,6 +31,8 @@ function valueEqual(a, b) {
       return valueEqual(a[key], b[key]);
     });
   }
+
+  if (aType !== bType) return false;
 
   return false;
 }
