@@ -20,6 +20,7 @@ jobs:
     - NPM_TAG=$([[ "$TRAVIS_TAG" == *-* ]] && echo "next" || echo "latest")
     script:
     - echo "Deploying $TRAVIS_TAG to npm with tag $NPM_TAG"
+    - echo "TEST_ENV: $TEST_ENV"
     # deploy:
     #   provider: npm
     #   skip_cleanup: true
