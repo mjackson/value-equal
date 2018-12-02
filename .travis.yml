@@ -6,13 +6,12 @@ env:
 - TEST_ENV=umd BUILD_ENV=umd
 - TEST_ENV=source
 before_script:
-- if [ "$TEST_ENV" != "source" ]; then npm run build; fi
+- ([[ -z "$BUILD_ENV" ]] || npm run build)
 jobs:
   include:
   - stage: "Release"
     if: tag =~ ^v[0-9]
     env: NPM_TAG=$([[ "$TRAVIS_TAG" == *-* ]] && echo "next" || echo "latest")
-    before_script: skip # The build already runs in prepublishOnly
     script: echo "Releasing $TRAVIS_TAG to npm with tag \"$NPM_TAG\" ..."
     deploy:
       provider: npm
