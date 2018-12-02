@@ -7,15 +7,10 @@ import pkg from './package.json';
 const input = './modules/index.js';
 const globalName = 'valueEqual';
 
-function external(id) {
-  return !id.startsWith('.') && !id.startsWith('/');
-}
-
 const cjs = [
   {
     input,
     output: { file: `cjs/${pkg.name}.js`, format: 'cjs' },
-    external,
     plugins: [
       replace({ 'process.env.NODE_ENV': JSON.stringify('development') })
     ]
@@ -23,7 +18,6 @@ const cjs = [
   {
     input,
     output: { file: `cjs/${pkg.name}.min.js`, format: 'cjs' },
-    external,
     plugins: [
       replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
       uglify()
@@ -35,7 +29,6 @@ const esm = [
   {
     input,
     output: { file: `esm/${pkg.name}.js`, format: 'esm' },
-    external,
     plugins: [sizeSnapshot()]
   }
 ];
