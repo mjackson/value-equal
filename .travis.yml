@@ -7,6 +7,9 @@ env:
 - TEST_ENV=source
 before_script:
 - ([[ -z "$BUILD_ENV" ]] || npm run build)
+script:
+- npm run lint
+- npm test
 jobs:
   include:
   - stage: "Release"

@@ -17,6 +17,7 @@
   "scripts": {
     "build": "rollup -c",
     "clean": "git clean -fdX .",
+    "lint": "eslint modules",
     "prepublishOnly": "npm run build",
     "test": "jest"
   },
@@ -25,6 +26,7 @@
     "@babel/preset-env": "^7.1.6",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^23.6.0",
+    "eslint": "^5.9.0",
     "jest": "^23.6.0",
     "rollup": "^0.67.3",
     "rollup-plugin-replace": "^2.1.0",
