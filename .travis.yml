@@ -14,8 +14,8 @@ script:
 - npm test
 jobs:
   include:
-  - if: tag =~ /^v[0-9]/
-    stage: "Release"
+  - stage: "Release"
+    if: tag =~ ^v[0-9]
     env:
     - NPM_TAG=$([[ "$TRAVIS_TAG" == *-* ]] && echo "next" || echo "latest")
     script:
@@ -27,3 +27,5 @@ jobs:
       email: npm@mjackson.me
       api_key:
         secure: MFaqOpSZdobIVroJ7Y7BG2/ET9T+0Mf92fST/6Wguw2kbyHXs120Jjw/GsAIMdz0kXF9yx+kg7NNkAyqoUtvWMF542cCoMMwHYLC/MGiPwOZVF/EQjSQmj4ypYm+78Bb+4AaIiGoLfF7IW8r9Faq8OLdtiS5CoHLuXC8UcfmpKZJzqZ3AGXzNMjUZVJZ5t2v/ATQGBVt7FyWkASn7kaso1e3k+BlMVgXcGfC4xVaf4wof3UJsQEO0vjRCPUhyA1anhwo+AGD7fEL8SjjirogGCzPKpZyOfjFK/cDMIMKOlc4X7fy+OY1wZhX7v6T6VSVtNP66orQF/WfTNUdwVWWonsvYV/3wL395ND37lh4xA4cNl7WuFvHeyOLL+3kWwg1nsAu+O+9acXlMnfoIQmUDTL3U0s/E1/964e1FFRWaNXtmj2PBwtHj8/C1UG9kqlFWk24jRNhFRqVqrzOjEjSjt4dghFba/8j6Az99km8Vrl1jXekk+JU8AtQjVRclKQbDAhSvo4C+HCQ8ioNc5JhnttKJty+ll+QOTB0BgEbUBO4WME+zIeG66oGH1Y+4eBiD8SZK2/OqHIhNk3ICFyHV/56SkuaRTi3ou01q2N+8Wmo5QsN/N2+lSpZ4Et/Y3GFrPQycokSzLVHY7pOiBiTYD71xYQFa7SnQvduPUtSDIY=
+      on:
+        tags: true

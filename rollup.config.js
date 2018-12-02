@@ -4,54 +4,67 @@ import { uglify } from 'rollup-plugin-uglify';
 
 import pkg from './package.json';
 
+const testEnv = process.env.TEST_ENV;
+
 const input = './modules/index.js';
 const name = 'valueEqual';
 
 const external = id => !id.startsWith('.') && !id.startsWith('/');
 
-export default [
-  {
-    input,
-    output: { file: `cjs/${pkg.name}.js`, format: 'cjs' },
-    external,
-    plugins: [
-      replace({ 'process.env.NODE_ENV': JSON.stringify('development') })
-    ]
-  },
+const config = [];
 
-  {
-    input,
-    output: { file: `cjs/${pkg.name}.min.js`, format: 'cjs' },
-    external,
-    plugins: [
-      replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
-      uglify()
-    ]
-  },
+if (!testEnv || testEnv === 'cjs') {
+  config.push(
+    {
+      input,
+      output: { file: `cjs/${pkg.name}.js`, format: 'cjs' },
+      external,
+      plugins: [
+        replace({ 'process.env.NODE_ENV': JSON.stringify('development') })
+      ]
+    },
+    {
+      input,
+      output: { file: `cjs/${pkg.name}.min.js`, format: 'cjs' },
+      external,
+      plugins: [
+        replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
+        uglify()
+      ]
+    }
+  );
+}
 
-  {
+if (!testEnv) {
+  config.push({
     input,
     output: { file: `esm/${pkg.name}.js`, format: 'esm' },
     external,
     plugins: [sizeSnapshot()]
-  },
+  });
+}
 
-  {
-    input,
-    output: { file: `umd/${pkg.name}.js`, format: 'umd', name },
-    plugins: [
-      replace({ 'process.env.NODE_ENV': JSON.stringify('development') }),
-      sizeSnapshot()
-    ]
-  },
+if (!testEnv || testEnv === 'umd') {
+  config.push(
+    {
+      input,
+      output: { file: `umd/${pkg.name}.js`, format: 'umd', name },
+      plugins: [
+        replace({ 'process.env.NODE_ENV': JSON.stringify('development') }),
+        sizeSnapshot()
+      ]
+    },
 
-  {
-    input,
-    output: { file: `umd/${pkg.name}.min.js`, format: 'umd', name },
-    plugins: [
-      replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
-      sizeSnapshot(),
-      uglify()
-    ]
-  }
-];
+    {
+      input,
+      output: { file: `umd/${pkg.name}.min.js`, format: 'umd', name },
+      plugins: [
+        replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
+        sizeSnapshot(),
+        uglify()
+      ]
+    }
+  );
+}
+
+export default config;
