@@ -4,16 +4,18 @@ import { uglify } from 'rollup-plugin-uglify';
 
 import pkg from './package.json';
 
-const testEnv = process.env.TEST_ENV;
+const buildEnv = process.env.BUILD_ENV;
 
 const input = './modules/index.js';
 const name = 'valueEqual';
 
-const external = id => !id.startsWith('.') && !id.startsWith('/');
+function external(id) {
+  return !id.startsWith('.') && !id.startsWith('/');
+}
 
 const config = [];
 
-if (!testEnv || testEnv === 'cjs') {
+if (!buildEnv || buildEnv === 'cjs') {
   config.push(
     {
       input,
@@ -35,7 +37,7 @@ if (!testEnv || testEnv === 'cjs') {
   );
 }
 
-if (!testEnv) {
+if (!buildEnv || buildEnv === 'esm') {
   config.push({
     input,
     output: { file: `esm/${pkg.name}.js`, format: 'esm' },
@@ -44,7 +46,7 @@ if (!testEnv) {
   });
 }
 
-if (!testEnv || testEnv === 'umd') {
+if (!buildEnv || buildEnv === 'umd') {
   config.push(
     {
       input,

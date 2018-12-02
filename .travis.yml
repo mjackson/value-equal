@@ -1,25 +1,20 @@
 language: node_js
-node_js:
-- stable
+node_js: node
 cache: npm
-env:
-- TEST_ENV=cjs
-- TEST_ENV=umd
-- TEST_ENV=source
-install:
-- npm ci
-before_script:
-- if [ "$TEST_ENV" != "source" ]; then npm run build; fi
-script:
-- npm test
 jobs:
   include:
+  - stage: "Test"
+    matrix:
+      include:
+      - env: TEST_ENV=cjs BUILD_ENV=cjs
+        before_script: npm run build
+      - env: TEST_ENV=umd BUILD_ENV=umd
+        before_script: npm run build
+      - env: TEST_ENV=source
   - stage: "Release"
     if: tag =~ ^v[0-9]
-    env:
-    - NPM_TAG=$([[ "$TRAVIS_TAG" == *-* ]] && echo "next" || echo "latest")
-    script:
-    - echo "Releasing $TRAVIS_TAG to npm with tag \"$NPM_TAG\" ..."
+    env: NPM_TAG=$([[ "$TRAVIS_TAG" == *-* ]] && echo "next" || echo "latest")
+    script: echo "Releasing $TRAVIS_TAG to npm with tag \"$NPM_TAG\" ..."
     deploy:
       provider: npm
       skip_cleanup: true
