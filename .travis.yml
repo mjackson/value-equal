@@ -1,18 +1,18 @@
 language: node_js
 node_js: node
 cache: npm
-matrix:
-  include:
-  - env: TEST_ENV=source
-  - env: TEST_ENV=cjs BUILD_ENV=cjs
-    before_script: npm run build
-  - env: TEST_ENV=umd BUILD_ENV=umd
-    before_script: npm run build
+env:
+- TEST_ENV=cjs BUILD_ENV=cjs
+- TEST_ENV=umd BUILD_ENV=umd
+- TEST_ENV=source
+before_script:
+- if [ "$TEST_ENV" != "source" ]; then npm run build; fi
 jobs:
   include:
   - stage: "Release"
     if: tag =~ ^v[0-9]
     env: NPM_TAG=$([[ "$TRAVIS_TAG" == *-* ]] && echo "next" || echo "latest")
+    before_script: skip # The build already runs in prepublishOnly
     script: echo "Releasing $TRAVIS_TAG to npm with tag \"$NPM_TAG\" ..."
     deploy:
       provider: npm
