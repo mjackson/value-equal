@@ -12,7 +12,7 @@ script:
 - npm test
 jobs:
   include:
-  - stage: "Release"
+  - stage: Release
     if: tag =~ ^v[0-9]
     env: NPM_TAG=$([[ "$TRAVIS_TAG" == *-* ]] && echo "next" || echo "latest")
     script: echo "Releasing $TRAVIS_TAG to npm with tag \"$NPM_TAG\" ..."
