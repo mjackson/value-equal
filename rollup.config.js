@@ -4,69 +4,75 @@ import { uglify } from 'rollup-plugin-uglify';
 
 import pkg from './package.json';
 
-const buildEnv = process.env.BUILD_ENV;
-
 const input = './modules/index.js';
-const name = 'valueEqual';
+const globalName = 'valueEqual';
 
 function external(id) {
   return !id.startsWith('.') && !id.startsWith('/');
 }
 
-const config = [];
+const cjs = [
+  {
+    input,
+    output: { file: `cjs/${pkg.name}.js`, format: 'cjs' },
+    external,
+    plugins: [
+      replace({ 'process.env.NODE_ENV': JSON.stringify('development') })
+    ]
+  },
+  {
+    input,
+    output: { file: `cjs/${pkg.name}.min.js`, format: 'cjs' },
+    external,
+    plugins: [
+      replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
+      uglify()
+    ]
+  }
+];
 
-if (!buildEnv || buildEnv === 'cjs') {
-  config.push(
-    {
-      input,
-      output: { file: `cjs/${pkg.name}.js`, format: 'cjs' },
-      external,
-      plugins: [
-        replace({ 'process.env.NODE_ENV': JSON.stringify('development') })
-      ]
-    },
-    {
-      input,
-      output: { file: `cjs/${pkg.name}.min.js`, format: 'cjs' },
-      external,
-      plugins: [
-        replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
-        uglify()
-      ]
-    }
-  );
-}
-
-if (!buildEnv || buildEnv === 'esm') {
-  config.push({
+const esm = [
+  {
     input,
     output: { file: `esm/${pkg.name}.js`, format: 'esm' },
     external,
     plugins: [sizeSnapshot()]
-  });
-}
+  }
+];
 
-if (!buildEnv || buildEnv === 'umd') {
-  config.push(
-    {
-      input,
-      output: { file: `umd/${pkg.name}.js`, format: 'umd', name },
-      plugins: [
-        replace({ 'process.env.NODE_ENV': JSON.stringify('development') }),
-        sizeSnapshot()
-      ]
-    },
+const umd = [
+  {
+    input,
+    output: { file: `umd/${pkg.name}.js`, format: 'umd', name: globalName },
+    plugins: [
+      replace({ 'process.env.NODE_ENV': JSON.stringify('development') }),
+      sizeSnapshot()
+    ]
+  },
+  {
+    input,
+    output: { file: `umd/${pkg.name}.min.js`, format: 'umd', name: globalName },
+    plugins: [
+      replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
+      sizeSnapshot(),
+      uglify()
+    ]
+  }
+];
 
-    {
-      input,
-      output: { file: `umd/${pkg.name}.min.js`, format: 'umd', name },
-      plugins: [
-        replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
-        sizeSnapshot(),
-        uglify()
-      ]
-    }
-  );
+let config;
+switch (process.env.BUILD_ENV) {
+  case 'cjs':
+    config = cjs;
+    break;
+  case 'esm':
+    config = esm;
+    break;
+  case 'umd':
+    config = umd;
+    break;
+  default:
+    config = cjs.concat(esm).concat(umd);
 }
 
 export default config;
