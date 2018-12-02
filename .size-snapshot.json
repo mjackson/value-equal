@@ -1,8 +1,8 @@
 {
   "esm/value-equal.js": {
-    "bundled": 1018,
-    "minified": 553,
-    "gzipped": 282,
+    "bundled": 937,
+    "minified": 539,
+    "gzipped": 274,
     "treeshaked": {
       "rollup": {
         "code": 0,
@@ -14,13 +14,13 @@
     }
   },
   "umd/value-equal.js": {
-    "bundled": 1343,
-    "minified": 656,
-    "gzipped": 349
+    "bundled": 1256,
+    "minified": 642,
+    "gzipped": 339
   },
   "umd/value-equal.min.js": {
-    "bundled": 1343,
-    "minified": 656,
-    "gzipped": 349
+    "bundled": 1256,
+    "minified": 642,
+    "gzipped": 339
   }
 }

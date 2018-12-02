@@ -19,23 +19,18 @@ function valueEqual(a, b) {
     );
   }
 
-  var aType = typeof a;
-  var bType = typeof b;
-
-  if (aType === 'object' || bType === 'object') {
+  if (typeof a === 'object' || typeof b === 'object') {
     var aValue = valueOf(a);
     var bValue = valueOf(b);
 
     if (aValue !== a || bValue !== b) return valueEqual(aValue, bValue);
 
-    var combo = Object.assign({}, a, b);
+    var union = Object.assign({}, a, b);
 
-    return Object.keys(combo).every(function(key) {
-      return valueEqual(combo[key], a[key]) && valueEqual(combo[key], b[key]);
+    return Object.keys(union).every(function(key) {
+      return valueEqual(union[key], a[key]) && valueEqual(union[key], b[key]);
     });
   }
-
-  if (aType !== bType) return false;
 
   return false;
 }
