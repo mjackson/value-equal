@@ -9,7 +9,7 @@ env:
 install:
 - npm ci
 before_script:
-- npm run build
+- if [ "$TEST_ENV" != "source" ]; then npm run build; fi
 script:
 - npm test
 jobs:
