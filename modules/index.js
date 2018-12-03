@@ -6,7 +6,7 @@ function valueEqual(a, b) {
   // Test for strict equality first.
   if (a === b) return true;
 
-  // Otherwise, if either of them is null we already know they are not equal.
+  // Otherwise, if either of them == null they are not equal.
   if (a == null || b == null) return false;
 
   if (Array.isArray(a)) {
