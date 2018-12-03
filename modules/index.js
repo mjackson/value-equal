@@ -25,10 +25,8 @@ function valueEqual(a, b) {
 
     if (aValue !== a || bValue !== b) return valueEqual(aValue, bValue);
 
-    var union = Object.assign({}, a, b);
-
-    return Object.keys(union).every(function(key) {
-      return valueEqual(union[key], a[key]) && valueEqual(union[key], b[key]);
+    return Object.keys(Object.assign({}, a, b)).every(function(key) {
+      return valueEqual(a[key], b[key]);
     });
   }
 
