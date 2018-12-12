@@ -6,6 +6,7 @@ switch (process.env.TEST_ENV) {
   case 'umd':
     mappedModule = '<rootDir>/umd/value-equal.js';
     break;
+  case 'source':
   default:
     mappedModule = '<rootDir>/modules/index.js';
 }
